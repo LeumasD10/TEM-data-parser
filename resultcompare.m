@@ -37,36 +37,11 @@ manual.diams_by_img = manmethods.sortimage(manual.diams_by_img_raw, ...
 % Every image file has its own primary particles belonging to a certain
 % aggregate, we need to sort them into their corresponding aggregates
 testarray = manual.diams_by_img{1,1};
-testresult = sortAggregates(testarray);
+testresult = manmethods.sortparticle(testarray);
 
 
 %% Finished Parsing
 disp('Parsing Complete');
-
-
-%% Accessory Function
-% Particles is a 2xn matrix, 1st row is diameters, 2nd row is its aggregate
-% ID given from the Manual Code
-% Returns an array of diameter groups pertaining to their aggregate
-function arrayOfDiams = sortAggregates(particles)
-    previousid = particles(2,1);
-    container = [];
-    arrayOfDiams = {};
-    for i = 1:1:size(particles,2)
-        idcurrent = particles(2,i);
-        if isequal(idcurrent,previousid)
-            container = [container, particles(1,i)];
-        else
-            arrayOfDiams = [arrayOfDiams, container];
-            container = [particles(1,i)];
-            previousid = idcurrent;
-        end
-    end
-    
-    if isequal(idcurrent,previousid)
-        arrayOfDiams = [arrayOfDiams, container];
-    end
-end
 
 
 

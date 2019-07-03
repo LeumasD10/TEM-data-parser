@@ -1,0 +1,11 @@
+function [arrf] = trimarray(arr)
+%TRIMARRAY Summary of this function goes here
+%   arr is a 2xn matrix
+
+top = arr(1,:);
+
+for i = top
+end
+
+end
+

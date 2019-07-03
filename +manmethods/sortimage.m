@@ -34,12 +34,16 @@ for i = 1:1:rows
         container(2,i) = current_aggid{1};
     else
         disp(['Image #',num2str(agg_num),' complete.']);
+        container = manmethods.trimarray(container);
         diams_by_img = [diams_by_img, container];
         container = zeros(2,rows);
         agg_num = agg_num + 1;
+        img_current = imgids(i,1);
         disp(['Parsing Image #',num2str(agg_num)]);
     end
 end
+
+disp(['Image #',num2str(agg_num),' complete.']);
 
 % Case where there was only one image file in the rawimgs set
 if agg_num == 1
