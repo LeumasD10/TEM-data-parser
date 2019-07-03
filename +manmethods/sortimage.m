@@ -43,13 +43,11 @@ for i = 1:1:rows
     end
 end
 
+% Retrieve last batch of primary particle data
+container = manmethods.trimarray(container); 
+diams_by_img = [diams_by_img, container];
 disp(['Image #',num2str(agg_num),' complete.']);
 
-% Case where there was only one image file in the rawimgs set
-if agg_num == 1
-    diams_by_img = [diams_by_img, container];
-    disp(['Image #',num2str(agg_num),' complete.']);
-end
 
 end
 
