@@ -1,0 +1,7 @@
+function [outputArg1,outputArg2] = showhists(histgroups)
+%UNTITLED Summary of this function goes here
+%   Displays every entry in the cell arr
+outputArg1 = inputArg1;
+outputArg2 = inputArg2;
+end
+

@@ -36,8 +36,12 @@ manual.diams_by_img = manmethods.sortimage(manual.diams_by_img_raw, ...
 %% Parse each Aggregate in Each Image
 % Every image file has its own primary particles belonging to a certain
 % aggregate, we need to sort them into their corresponding aggregates
-testarray = manual.diams_by_img{1,1};
+testarray = manual.diams_by_img{1,2};
 testresult = manmethods.sortparticle(testarray);
+
+hold on;
+manmethods.showhists(testresult);
+title('Histogram of all Primary Particles in All Aggregates in Image')
 
 
 %% Finished Parsing
