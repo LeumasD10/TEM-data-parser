@@ -13,6 +13,9 @@ manual = manmethods.parsemanual();
 manual.dpmeans = manmethods.findmeans(manual.sorteddp);
 manual.dpdevs = manmethods.finddevs(manual.sorteddp);
 
+%% PCM Processing
+pcm = pcmmethods.parsepcm();
+
 
 
 
