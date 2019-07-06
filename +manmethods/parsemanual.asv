@@ -1,0 +1,12 @@
+function manual = parsemanual()
+%PARSEMANUAL Obtains, parses, and returns a manual struct of data
+%   Prompts user for a Manual Sizing Results spreadsheet and parses it.
+%   Returns a struct for manual including the raw data, id's, dp's, and a
+%   sorted dp cell array by aggregate.
+%   WARNING: The spreadsheet cannot have an empty column, please remove it
+%   prior to use.
+
+manual = struct;    % Manual is a struct
+
+end
+
