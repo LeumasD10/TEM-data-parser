@@ -16,6 +16,10 @@ manual.dpdevs = manmethods.finddevs(manual.sorteddp);
 %% PCM Processing
 pcm = pcmmethods.parsepcm();
 
+disp(pcm.dpsim);
+disp(pcm.dpgen);
+disp(manual.dpmeans);
+
 
 
 
