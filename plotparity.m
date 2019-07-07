@@ -15,9 +15,12 @@ pcm.gen = transpose(cell2mat(raw((2:end),2)));
 man.dp = transpose(cell2mat(raw((2:end),4)));
 man.dev = transpose(cell2mat(raw((2:end),5)));
 
-%% Plot
+%% Plot Results
 hold on;
-scatter(man.dp,pcm.sim);
+
+% Plot Simplified PCM
+errorbar(man.dp,pcm.sim,man.dev,man.dev, ...
+    '.','MarkerSize',20);
 
 % Plot a 1:1 relation
 maxval = max([pcm.sim,pcm.gen,man.dp]);

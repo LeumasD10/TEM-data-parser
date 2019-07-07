@@ -15,11 +15,20 @@ pcm.gen = transpose(cell2mat(raw((2:end),2)));
 man.dp = transpose(cell2mat(raw((2:end),4)));
 man.dev = transpose(cell2mat(raw((2:end),5)));
 
-%% Plot
+%% Plot Results
 hold on;
+
+% Plot Simplified PCM
 scatter(man.dp,pcm.sim);
+errorbar(ma)
 
 % Plot a 1:1 relation
 maxval = max([pcm.sim,pcm.gen,man.dp]);
+y = 0:1:maxval;
+x = y;
+plot(x,y);
 
+
+legend({'PCM Simplified','1:1 Idealized Reference'}, ... 
+    'Location','southeast');
 
