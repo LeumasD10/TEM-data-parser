@@ -20,7 +20,27 @@ hold on;
 
 % Plot Simplified PCM
 errorbar(man.dp,pcm.sim,man.dev,man.dev, ...
-    '.','MarkerSize',20);
+    'Horizontal','r.','MarkerSize',20);
+
+% Compute line of best fit starting at origin
+% y = ax, a = x\y to solve linear system
+a = man.dp'\pcm.sim';
+% Concatenate origin to best fit data set
+fitx = [0 man.dp];
+fity = [0 a*man.dp];
+plot(fitx,fity,'r');
+
+% Plot Generalized PCM
+errorbar(man.dp,pcm.gen,man.dev,man.dev, ...
+    'Horizontal','k.','MarkerSize',20);
+
+% Compute line of best fit starting at origin
+% y = ax, a = x\y to solve linear system
+a = man.dp'\pcm.gen';
+% Concatenate origin to best fit data set
+fitx = [0 man.dp];
+fity = [0 a*man.dp];
+plot(fitx,fity,'k');
 
 % Plot a 1:1 relation
 maxval = max([pcm.sim,pcm.gen,man.dp]);
@@ -28,7 +48,13 @@ y = 0:1:maxval;
 x = y;
 plot(x,y);
 
-
-legend({'PCM Simplified','1:1 Idealized Reference'}, ... 
+xlabel('Manual dp (nm)');
+ylabel('Method dp (nm)');
+title('Parity Plot of Select Method dp Against Manual dp Sizing');
+legend({'PCM Simplified Data and STDEV', ...
+    'PCM Simplified Best Fit Line', ... 
+    'PCM General Data and STDEV', ...
+    'PCM General Best Fit Line' ...
+    '1:1 Idealized Reference'}, ... 
     'Location','southeast');
 
