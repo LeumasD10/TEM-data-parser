@@ -28,18 +28,17 @@ errorbar(man.dp,pcm.gen,man.dev,man.dev, ...
 
 % Compute line of best fit starting at origin
 % y = ax, a = x\y to solve linear system
+% a is a struct to store slopes of general and simplified as fields
+a = struct;     
 
-a = struct;
-
+% PCM Simplified
 a.pcmsim = man.dp'\pcm.sim';
 % Concatenate origin to best fit data set
 fitx = [0 man.dp];
 fity = [0 a.pcmsim*man.dp];
 plot(fitx,fity,'r');
 
-
-% Compute line of best fit starting at origin
-% y = ax, a = x\y to solve linear system
+%PCM General
 a.pcmgen = man.dp'\pcm.gen';
 % Concatenate origin to best fit data set
 fitx = [0 man.dp];
