@@ -20,11 +20,11 @@ hold on;
 
 % Plot Simplified PCM
 errorbar(man.dp,pcm.sim,man.dev,man.dev, ...
-    'Horizontal','r.','MarkerSize',20);
+    'Horizontal','r^','MarkerSize',5);
 
 % Plot Generalized PCM
 errorbar(man.dp,pcm.gen,man.dev,man.dev, ...
-    'Horizontal','k.','MarkerSize',20);
+    'Horizontal','kd','MarkerSize',5);
 
 % Compute line of best fit starting at origin
 % y = ax, a = x\y to solve linear system
