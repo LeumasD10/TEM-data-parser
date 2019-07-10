@@ -19,11 +19,11 @@ man.dev = transpose(cell2mat(raw((2:end),5)));
 hold on;
 
 % Plot Simplified PCM
-errorbar(man.dp,pcm.sim,man.dev,man.dev, ...
+pcm.simplot = errorbar(man.dp,pcm.sim,man.dev,man.dev, ...
     'Horizontal','r^','MarkerSize',5);
 
 % Plot Generalized PCM
-errorbar(man.dp,pcm.gen,man.dev,man.dev, ...
+pcm.genplot = errorbar(man.dp,pcm.gen,man.dev,man.dev, ...
     'Horizontal','kd','MarkerSize',5);
 
 % Compute line of best fit starting at origin
@@ -36,28 +36,29 @@ a.pcmsim = man.dp'\pcm.sim';
 % Concatenate origin to best fit data set
 fitx = [0 man.dp];
 fity = [0 a.pcmsim*man.dp];
-plot(fitx,fity,'r');
+pcm.simfit = plot(fitx,fity,'r');
 
 %PCM General
 a.pcmgen = man.dp'\pcm.gen';
 % Concatenate origin to best fit data set
 fitx = [0 man.dp];
 fity = [0 a.pcmgen*man.dp];
-plot(fitx,fity,'k');
+pcm.genfit = plot(fitx,fity,'k');
 
 % Plot a 1:1 relation
 maxval = max([pcm.sim,pcm.gen,man.dp]);
 y = 0:1:maxval;
 x = y;
-plot(x,y);
+man.ideal = plot(x,y);
 
-xlabel('Manual dp (nm)');
-ylabel('Method dp (nm)');
-title('Parity Plot of Select Method dp Against Manual dp Sizing');
-legend({'PCM Simplified Data and STDEV', ...
-    'PCM General Data and STDEV', ...
-    'PCM Simplified Best Fit Line', ...
-    'PCM General Best Fit Line' ...
-    '1:1 Idealized Reference'}, ... 
-    'Location','southeast');
+dim = [.15 .6 .3 .3];
+str = 'Error Bars are Standard Deviations';
+annotation('textbox',dim,'String',str,'FitBoxToText','on');
+
+xlabel('Manual dp Measure (nm)');
+ylabel('Automated dp Measure (nm)');
+title('Comparison of Automated and Manual Particle Sizing');
+legend([pcm.simplot,pcm.genplot,man.ideal], ... 
+    {'PCM Simplified','PCM Generalized','1:1 Reference'}, ...
+    'Location','Southeast');
 
