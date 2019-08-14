@@ -12,8 +12,8 @@ pcm = struct; man = struct;
 
 pcm.sim = transpose(cell2mat(raw((2:end),1)));
 pcm.gen = transpose(cell2mat(raw((2:end),2)));
-man.dp = transpose(cell2mat(raw((2:end),4)));
-man.dev = transpose(cell2mat(raw((2:end),5)));
+man.dp = transpose(cell2mat(raw((2:end),3)));
+man.dev = transpose(cell2mat(raw((2:end),4)));
 
 %% Plot Results
 hold on;
@@ -52,7 +52,7 @@ x = y;
 man.ideal = plot(x,y);
 
 dim = [.15 .6 .3 .3];
-str = 'Error Bars are Standard Deviations';
+str = 'Error Bars are 95% Confidence Intervals';
 annotation('textbox',dim,'String',str,'FitBoxToText','on');
 
 xlabel('Manual dp Measure (nm)');
