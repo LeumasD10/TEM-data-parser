@@ -1,0 +1,47 @@
+% PCM Parity
+% Performs a parity plot of PCM Simplified and PCM Generalized given a
+% prompted Excel spreadsheet containing data from PCM (Ramin and Rogak)
+%
+% CODE DOES NOT READ CONTENTS UNLESS THE DATA IS COPY AND PASTED ONTO A NEW
+% EXCEL WORKBOOK AND DOES NOT CONTAIN ANY EMPTY COLUMNS
+%
+% Written by Samuel Ma 8.17.2019
+
+close all;
+
+%% Obtain PCM File Contents
+Data = struct;
+
+% Obtain File
+[n,p,~] = uigetfile('*', ...
+    'Select PCM Output to analyze');
+% Read Contents
+Data.raw = readcell([p n]);
+Data.sim = cell2mat(Data.raw(2:end,9));
+Data.gen = cell2mat(Data.raw(2:end,10));
+
+%% Plot Data
+hold on;
+
+% Plot PCM data points
+scatter(Data.sim,Data.gen,'b');
+
+% Plot line of best fit starting at origin
+% y = ax --> a = x\y
+% Fit boundaries dictated by data boundaries
+a = Data.sim\Data.gen;
+fit = struct;
+fit.x = [0 Data.sim'];
+fit.y = [0 Data.sim'*a];
+plot(fit.x',fit.y','b');
+
+%% Plot Reference
+ref = [0,max(Data.sim)];
+plot(ref,ref,'r');
+
+%% Label Plot
+title('Comparison of PCM Simplified and Generalized Processing Methods');
+xlabel('PCM Simplified dp (nm)');
+ylabel('PCM Generalized dp (nm)');
+
+
